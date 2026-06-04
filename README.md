@@ -27,6 +27,10 @@ A Wordle-inspired word guessing game built using HTML, CSS, and JavaScript. Play
    * ⬜ Letter not present in the word
 4. Guess the word within the allowed attempts.
 
+## Live Demo
+
+[Play Wordle Online](https://aaryaag22-codes.github.io/wordle-game/)
+
 ## Author
 
 Aarya Agarwal
