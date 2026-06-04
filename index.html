@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  📚 LESSON 1: HTML DOCUMENT STRUCTURE
+  ============================================================
+  Every HTML file starts with <!DOCTYPE html> — this tells the
+  browser "this is a modern HTML5 document."
+
+  Then comes the root <html> element that wraps EVERYTHING.
+  Inside it, there are always two main sections:
+    <head>  — metadata, links, settings (not visible on page)
+    <body>  — everything the user actually SEES
+  ============================================================
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <!--
+    charset="UTF-8" means the page can display any character
+    from any language — including emojis! 🎉
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    This meta tag makes the page look good on phones.
+    Without it, mobile browsers zoom out and show a tiny page.
+  -->
+
+  <title>Wordle</title>
+  <!-- The text that appears in the browser tab -->
+
+  <link rel="stylesheet" href="css/style.css" />
+  <!--
+    📚 LESSON 2: LINKING FILES
+    We connect our CSS file here using a <link> tag.
+    href="css/style.css" is a RELATIVE PATH — it means
+    "look in the 'css' folder next to this file."
+  -->
+</head>
+
+<body>
+
+  <!-- =====================================================
+    📚 LESSON 3: HTML ELEMENTS & NESTING
+    HTML is made of ELEMENTS (also called "tags").
+    Most tags come in pairs: <div> ... </div>
+    Elements can be NESTED inside each other, like boxes
+    inside boxes.
+
+    <header> = top section of the page
+    <main>   = the primary content
+    <div>    = a generic container (no special meaning)
+    <button> = a clickable button
+  ===================================================== -->
+
+  <header class="header">
+    <h1 class="title">WORDLE</h1>
+    <p class="subtitle">Guess the 5-letter word in 6 tries</p>
+  </header>
+
+  <main class="game-container">
+
+    <!-- THE GAME BOARD: a 6x5 grid of letter tiles -->
+    <div class="board" id="board">
+      <!--
+        📚 LESSON 4: id vs class
+        id="board"   → UNIQUE identifier. Only ONE element
+                        on the page should have a given id.
+                        Used in JS: document.getElementById("board")
+
+        class="tile" → can be shared by MANY elements.
+                        Used for styling groups of things in CSS.
+
+        We generate these tiles dynamically in JavaScript,
+        so the board starts empty here in HTML.
+      -->
+    </div>
+
+    <!-- MESSAGE DISPLAY (hidden by default) -->
+    <div class="message" id="message"></div>
+
+    <!-- THE KEYBOARD -->
+    <div class="keyboard" id="keyboard">
+      <!-- Rows of keys — built by JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- HOW TO PLAY MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <h2>How to Play</h2>
+      <p>Guess the <strong>WORDLE</strong> in 6 tries.</p>
+      <ul>
+        <li>Each guess must be a valid 5-letter word.</li>
+        <li>The color of the tiles will change to show how close your guess was.</li>
+      </ul>
+      <div class="examples">
+        <p><strong>Examples</strong></p>
+
+        <div class="example-row">
+          <div class="tile correct example-tile">W</div>
+          <div class="tile example-tile">E</div>
+          <div class="tile example-tile">A</div>
+          <div class="tile example-tile">R</div>
+          <div class="tile example-tile">Y</div>
+        </div>
+        <p><span class="correct-text">W</span> is in the word and in the correct spot.</p>
+
+        <div class="example-row">
+          <div class="tile example-tile">P</div>
+          <div class="tile present example-tile">I</div>
+          <div class="tile example-tile">L</div>
+          <div class="tile example-tile">L</div>
+          <div class="tile example-tile">S</div>
+        </div>
+        <p><span class="present-text">I</span> is in the word but in the wrong spot.</p>
+
+        <div class="example-row">
+          <div class="tile example-tile">V</div>
+          <div class="tile example-tile">A</div>
+          <div class="tile example-tile">G</div>
+          <div class="tile absent example-tile">U</div>
+          <div class="tile example-tile">E</div>
+        </div>
+        <p><span class="absent-text">U</span> is not in the word in any spot.</p>
+      </div>
+      <button class="play-btn" id="play-btn">Play!</button>
+    </div>
+  </div>
+
+  <script src="js/words.js"></script>
+  <script src="js/game.js"></script>
+  <!--
+    📚 LESSON 5: SCRIPT ORDER MATTERS
+    We put <script> tags at the BOTTOM of <body>.
+    Why? The browser reads HTML top-to-bottom.
+    If scripts were at the top, they'd run before the
+    HTML elements exist — and the JS wouldn't find them!
+
+    words.js is loaded FIRST because game.js needs
+    the word list that words.js defines.
+  -->
+
+</body>
+</html>
